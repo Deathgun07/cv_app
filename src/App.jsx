@@ -20,7 +20,7 @@ function App() {
   });
 
   const [formation, setFormation] = useState({
-    degree: '',
+    diplome: '',
     school: '',
     gradDate: '',
   });

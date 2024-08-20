@@ -99,12 +99,12 @@ function Form({ personalInfo, experience, formation, skills, languages, hobbies,
       {/* Section: Formation */}
       <h3>Formation</h3>
       <div>
-        <label htmlFor="degree">Diplôme :</label>
+        <label htmlFor="diplome">Diplôme :</label>
         <input
           type="text"
-          id="degree"
-          name="degree"
-          value={formation.degree}
+          id="diplome"
+          name="diplome"
+          value={formation.diplome}
           onChange={onFormationChange}
         />
       </div>

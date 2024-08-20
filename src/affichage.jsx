@@ -18,7 +18,7 @@ function CVPreview({ personalInfo, experience, formation, skills, languages, hob
       <hr />
       <div>
         <h3>Formation</h3>
-        <p>{formation.degree} à {formation.school}</p>
+        <p>{formation.diplome} à {formation.school}</p>
         <p>Date de fin : {formation.gradDate}</p>
       </div>
       <hr />
