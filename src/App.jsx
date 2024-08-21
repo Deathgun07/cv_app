@@ -2,8 +2,14 @@ import { useState } from 'react'
 import Form from './forms';
 import CVPreview from './affichage';
 
+
+
+
 function App() {
   // États pour stocker les valeurs des champs de formulaire
+  const [image, setImage]=useState(null)
+  const [url, setUrl]=useState(null)
+
   const [personalInfo, setPersonalInfo] = useState({
     name: '',
     email: '',
@@ -45,6 +51,15 @@ function App() {
   const onSkillsChange = (e) => setSkills(e.target.value);
   const onLanguagesChange = (e) => setLanguages(e.target.value);
   const onHobbiesChange = (e) => setHobbies(e.target.value);
+  const OnImageUpload = (e) => {
+    const file = e.target.files[0]
+    if (file) {
+      setImage(file)
+      setUrl(URL.createObjectURL(file))
+      console.log(url);
+      
+    }
+  }
 
   return (
     <div className="App">
@@ -64,10 +79,12 @@ function App() {
           onSkillsChange={onSkillsChange}
           onLanguagesChange={onLanguagesChange}
           onHobbiesChange={onHobbiesChange}
+          onImageUpload={OnImageUpload}
           />
         </div>
         <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
           <CVPreview
+          url={url}
           personalInfo={personalInfo}
           experience={experience}
           formation={formation}

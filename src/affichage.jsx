@@ -1,4 +1,4 @@
-function CVPreview({ personalInfo, experience, formation, skills, languages, hobbies }) {
+function CVPreview({url, personalInfo, experience, formation, skills, languages, hobbies }) {
   return (
     <div className="container mt-5">
   <h2 className="text-center text-primary mb-4">Aperçu du CV</h2>
@@ -6,6 +6,7 @@ function CVPreview({ personalInfo, experience, formation, skills, languages, hob
   <div className="card shadow-sm mb-4">
     <div className="card-body bg-light rounded">
       <div className="row">
+      <img src={url} alt="image" style={{maxWidth:'200px', height:'200px'}} />
         <div className="col-md-12 text-center mb-4">
           <h3 className="card-title text-secondary">{personalInfo.name}</h3>
           <p className="card-text"><strong>Email :</strong> {personalInfo.email}</p>

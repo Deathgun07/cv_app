@@ -1,10 +1,17 @@
-function Form({ personalInfo, experience, formation, skills, languages, hobbies, onPersonalInfoChange, onExperienceChange, onFormationChange, onSkillsChange, onLanguagesChange, onHobbiesChange }) {
+function Form({ image, personalInfo, experience, formation, skills, languages, hobbies, onPersonalInfoChange, onExperienceChange, onFormationChange, onSkillsChange, onLanguagesChange, onHobbiesChange, onImageUpload }) {
   return (
     <div className="container mt-5 p-4 bg-light rounded">
   <h2 className="text-center text-primary mb-4">Création de CV</h2>
   
   {/* Section: Informations Personnelles */}
   <h3 className="text-secondary mb-3">Informations Personnelles</h3>
+  <div className="mb-3">
+      <input
+        className="form-control w-75"
+        type="file"
+        onChange={onImageUpload}
+      />
+    </div>
   <div className="mb-3">
     <label htmlFor="name" className="form-label">Nom :</label>
     <input
