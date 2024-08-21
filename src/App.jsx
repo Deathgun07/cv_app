@@ -47,9 +47,11 @@ function App() {
   const onHobbiesChange = (e) => setHobbies(e.target.value);
 
   return (
-    <div style={{ display: 'flex' }}>
-      <div style={{ marginRight: '50px' }}>
-        <Form
+    <div className="App">
+      <div className="container mt-4">
+        <div className="row justify-content-center w-100">
+          <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+          <Form
           personalInfo={personalInfo}
           experience={experience}
           formation={formation}
@@ -62,17 +64,19 @@ function App() {
           onSkillsChange={onSkillsChange}
           onLanguagesChange={onLanguagesChange}
           onHobbiesChange={onHobbiesChange}
-        />
-      </div>
-      <div>
-        <CVPreview
+          />
+        </div>
+        <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+          <CVPreview
           personalInfo={personalInfo}
           experience={experience}
           formation={formation}
           skills={skills}
           languages={languages}
           hobbies={hobbies}
-        />
+          />
+        </div>
+        </div>
       </div>
     </div>
   );
