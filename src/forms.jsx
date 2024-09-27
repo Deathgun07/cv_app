@@ -1,10 +1,14 @@
-function Form({ image, personalInfo, experience, formation, skills, languages, hobbies, onPersonalInfoChange, onExperienceChange, onFormationChange, onSkillsChange, onLanguagesChange, onHobbiesChange, onImageUpload }) {
-  return (
-    <div className="container mt-5 p-4 bg-light rounded">
-  <h2 className="text-center text-primary mb-4">Création de CV</h2>
-  
+export function PersonalInfoForm({personalInfo, onPersonalInfoChange, onImageUpload, onClick, showForm}){
   {/* Section: Informations Personnelles */}
-  <h3 className="text-secondary mb-3">Informations Personnelles</h3>
+  return<>
+  <div className="d-flex">
+    <h3 className="text-secondary mb-3">Informations Personnelles</h3>
+    <button onClick={onClick}>
+        {showForm ? '-' : '+'}
+    </button>
+  </div>
+  {showForm && (
+  <>
   <div className="mb-3">
       <input
         className="form-control w-75"
@@ -55,10 +59,46 @@ function Form({ image, personalInfo, experience, formation, skills, languages, h
       value={personalInfo.address}
       onChange={onPersonalInfoChange}
     />
+  </div> 
+  <div className="mb-4">
+    <label htmlFor="poste" className="form-label">Poste occupé ou recherché :</label>
+    <input
+      className="form-control w-75"
+      type="text"
+      id="poste"
+      name="poste"
+      value={personalInfo.poste}
+      onChange={onPersonalInfoChange}
+    />
+  </div>   
+  <div className="mb-4">
+    <label htmlFor="profil" className="form-label">Description du profil :</label>
+    <textarea
+      className="form-control w-75"
+      id="profil"
+      name="profil"
+      rows="3"
+      value={personalInfo.profil}
+      onChange={onPersonalInfoChange}
+    ></textarea>
   </div>
+  </>
+  )}
+  </>
+}
 
-  {/* Section: Expérience Professionnelle */}
-  <h3 className="text-secondary mb-3">Expérience Professionnelle</h3>
+export function ExperienceForm({newExperience, onExperienceChange, onClick, showForm, addExperiences}){
+
+  return <>
+    {/* Section: Expérience Professionnelle */}
+  <div className="d-flex">
+    <h3 className="text-secondary mb-3">Expérience Professionnelle</h3>
+    <button onClick={onClick}>
+          {showForm ? '-' : '+'}
+    </button>
+  </div>
+  {showForm && (
+  <>
   <div className="mb-3">
     <label htmlFor="jobTitle" className="form-label">Titre du poste :</label>
     <input
@@ -66,7 +106,7 @@ function Form({ image, personalInfo, experience, formation, skills, languages, h
       type="text"
       id="jobTitle"
       name="jobTitle"
-      value={experience.jobTitle}
+      value={newExperience.jobTitle}
       onChange={onExperienceChange}
     />
   </div>
@@ -77,7 +117,7 @@ function Form({ image, personalInfo, experience, formation, skills, languages, h
       type="text"
       id="company"
       name="company"
-      value={experience.company}
+      value={newExperience.company}
       onChange={onExperienceChange}
     />
   </div>
@@ -88,7 +128,7 @@ function Form({ image, personalInfo, experience, formation, skills, languages, h
       type="date"
       id="startDate"
       name="startDate"
-      value={experience.startDate}
+      value={newExperience.startDate}
       onChange={onExperienceChange}
     />
   </div>
@@ -99,7 +139,7 @@ function Form({ image, personalInfo, experience, formation, skills, languages, h
       type="date"
       id="endDate"
       name="endDate"
-      value={experience.endDate}
+      value={newExperience.endDate}
       onChange={onExperienceChange}
     />
   </div>
@@ -110,13 +150,29 @@ function Form({ image, personalInfo, experience, formation, skills, languages, h
       id="responsibilities"
       name="responsibilities"
       rows="3"
-      value={experience.responsibilities}
+      value={newExperience.responsibilities}
       onChange={onExperienceChange}
     ></textarea>
+    <button onClick={addExperiences}>Ajouter</button>
   </div>
+  </>
+  )}
+  </>
+}
 
+export function FormationForm({newFormation, onFormationChange, onClick, showForm, addFormation}){
+
+  return <>
+    
   {/* Section: Formation */}
-  <h3 className="text-secondary mb-3">Formation</h3>
+  <div className="d-flex">
+    <h3 className="text-secondary mb-3">Formation</h3>
+    <button onClick={onClick}>
+          {showForm ? '-' : '+'}
+    </button>
+  </div>
+  {showForm && (
+  <>
   <div className="mb-3">
     <label htmlFor="diplome" className="form-label">Diplôme :</label>
     <input
@@ -124,7 +180,7 @@ function Form({ image, personalInfo, experience, formation, skills, languages, h
       type="text"
       id="diplome"
       name="diplome"
-      value={formation.diplome}
+      value={newFormation.diplome}
       onChange={onFormationChange}
     />
   </div>
@@ -135,7 +191,7 @@ function Form({ image, personalInfo, experience, formation, skills, languages, h
       type="text"
       id="school"
       name="school"
-      value={formation.school}
+      value={newFormation.school}
       onChange={onFormationChange}
     />
   </div>
@@ -146,60 +202,100 @@ function Form({ image, personalInfo, experience, formation, skills, languages, h
       type="date"
       id="gradDate"
       name="gradDate"
-      value={formation.gradDate}
+      value={newFormation.gradDate}
       onChange={onFormationChange}
     />
   </div>
-
-  {/* Section: Compétences */}
-  <h3 className="text-secondary mb-3">Compétences</h3>
-  <div className="mb-4">
-    <label htmlFor="skills" className="form-label">Liste de compétences :</label>
-    <textarea
-      className="form-control w-75"
-      id="skills"
-      name="skills"
-      rows="3"
-      value={skills}
-      onChange={onSkillsChange}
-    ></textarea>
-  </div>
-
-  {/* Section: Langues */}
-  <h3 className="text-secondary mb-3">Langues</h3>
-  <div className="mb-4">
-    <label htmlFor="languages" className="form-label">Langues parlées :</label>
-    <textarea
-      className="form-control w-75"
-      id="languages"
-      name="languages"
-      rows="3"
-      value={languages}
-      onChange={onLanguagesChange}
-    ></textarea>
-  </div>
-
-  {/* Section: Loisirs */}
-  <h3 className="text-secondary mb-3">Loisirs</h3>
-  <div className="mb-4">
-    <label htmlFor="hobbies" className="form-label">Liste de loisirs :</label>
-    <textarea
-      className="form-control w-75"
-      id="hobbies"
-      name="hobbies"
-      rows="3"
-      value={hobbies}
-      onChange={onHobbiesChange}
-    ></textarea>
-  </div>
-
-  {/* Bouton pour soumettre le formulaire complet */}
-  <div className="text-center mt-4">
-    <button className="btn btn-primary w-50" type="submit">Créer le CV</button>
-  </div>
-</div>
-
-  );
+  <button onClick={addFormation}>Ajouter</button>
+  </>
+  )}
+  </>
 }
 
-export default Form;
+export function SkillsForm({newSkills, onSkillsChange, onClick, showForm, addSkills}){
+
+  return <>
+    
+  {/* Section: Compétences */}
+  <div className="d-flex">
+    <h3 className="text-secondary mb-3">Compétences</h3>
+    <button onClick={onClick}>
+      {showForm ? '-' : '+'}
+    </button>
+  </div>
+  {showForm && (
+  <>
+  <div className="mb-4">
+    <label htmlFor="skills" className="form-label">Ajoutez une competence :</label>
+    <input
+    type="text"
+    className="form-control w-75"
+    id="skills"
+    name="skills"
+    value={newSkills}
+    onChange={onSkillsChange}
+    />
+    <button onClick={addSkills}>Ajouter</button>
+  </div>
+  </>
+  )}
+  </>
+}
+
+export function LanguagesForm({newLanguages, onLanguagesChange, onClick, showForm, addLanguages}){
+
+  return <>
+    {/* Section: Langues */}
+  <div className="d-flex">
+    <h3 className="text-secondary mb-3">Langues</h3>
+    <button onClick={onClick}>
+      {showForm ? '-' : '+'}
+    </button>
+  </div>
+  {showForm && (
+  <>
+  <div className="mb-4">
+    <label htmlFor="languages" className="form-label">Ajoutez une langues :</label>
+    <input
+    type="text"
+    className="form-control w-75"
+    id="languages"
+    name="languages"
+    value={newLanguages}
+    onChange={onLanguagesChange}
+    />
+    <button onClick={addLanguages}>Ajouter</button>
+  </div>
+  </>
+  )}
+  </>
+}
+
+export function HobbiesForm({newHobbies, onHobbiesChange, onClick, showForm, addHobbies}){
+
+  return <>
+  {/* Section: Loisirs */}
+  <div className="d-flex">
+    <h3 className="text-secondary mb-3">Loisirs</h3>
+    <button onClick={onClick}>
+      {showForm ? '-' : '+'}
+    </button>
+  </div>
+  {showForm && (
+  <>
+  <div className="mb-4">
+  <label htmlFor="hobbies" className="form-label">Ajoutez un loisir :</label>
+    <input
+    type="text"
+    className="form-control w-75"
+    id="hobbies"
+    name="hobbies"
+    value={newHobbies}
+    onChange={onHobbiesChange}
+    />
+    <button onClick={addHobbies}>Ajouter</button>
+  </div>
+  </>
+  )}
+  </>
+}
